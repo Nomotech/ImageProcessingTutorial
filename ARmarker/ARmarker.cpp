@@ -4,7 +4,6 @@
 
 
 #include "../utility/baslerCam.hpp"
-#include "../utility/shader.hpp"
 
 #define USE_BASLER 0
 
@@ -28,13 +27,13 @@ int main() {
 	const int rows = (int)(cols * 89.0 / 58.0);
 
 	// tramp data set
-	std::vector<cv::Mat> tramp;
+	std::vector<cv::Mat> trump;
 	for (int i = 0; i < 13; i++) {
 		std::stringstream sst;
 		sst << "./img/s" << i + 1 << ".jpg";
 		cv::Mat img = cv::imread(sst.str(), 0);
 		cv::resize(img, img, cv::Size(), (double)cols / img.cols, (double)rows / img.rows);
-		tramp.push_back(img);
+		trump.push_back(img);
 	}
 
 	//cube
@@ -177,7 +176,7 @@ int main() {
 					int num = 0;
 
 					for (int i = 0; i < 13; i++) {
-						bitwise_xor(dst, tramp[i], img_xor);
+						bitwise_xor(dst, trump[i], img_xor);
 						float mean = cv::mean(img_xor)[0];
 						if (mean < score) {
 							score = mean;
@@ -243,7 +242,7 @@ int main() {
 		else cv::destroyWindow("bin");
 
 		if (xorNum > 0) {
-			bitwise_xor(dst, tramp[xorNum - 1], img_xor);
+			bitwise_xor(dst, trump[xorNum - 1], img_xor);
 			cv::imshow("xor", img_xor);
 		}
 		else {

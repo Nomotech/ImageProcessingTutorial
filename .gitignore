@@ -10,3 +10,5 @@ x64/
 CamCalibration/images/
 
 .vscode/
+
+packages/
